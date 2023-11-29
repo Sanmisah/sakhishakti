@@ -27,11 +27,14 @@
                     <td class="float-right">
                         <ul class="flex items-center gap-2" >
                             <li style="display: inline-block;vertical-align:top;">
+                                <x-pdf-button :link=" route('visitors.history', $visitor->id)"/>  
+                            </li>   
+                            <li style="display: inline-block;vertical-align:top;">
                                 <x-edit-button :link=" route('visitors.edit', $visitor->id)" />                               
                             </li>
                             <li style="display: inline-block;vertical-align:top;">
                                 <x-delete-button :link=" route('visitors.destroy',$visitor->id)" />  
-                            </li>   
+                            </li> 
                         </ul>
                     </td>
                 </tr>

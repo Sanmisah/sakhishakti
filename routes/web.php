@@ -35,6 +35,7 @@ Route::group(['namespace' => 'App\Http\Controllers'], function()
     Route::get('/add/visitors/', 'VisitorsController@add')->name('visitors.add');
     Route::post('addMedicalAssessment','VisitorsController@addMedicalAssessment')->name('addMedicalAssessment');
     Route::post('/visitors/storeMedicalAssessment','VisitorsController@storeMedicalAssessment')->name('visitors.storeMedicalAssessment');
+    Route::get('/hsitory/visitors/', 'VisitorsController@history')->name('visitors.history');
     
     Route::group(['middleware' => ['auth', 'permission']], function() {       
         /**

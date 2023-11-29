@@ -12,7 +12,7 @@ $date = Carbon::now()->format('d/m/Y');
             <span>Add Medical Assessment Form</span>
         </li>
     </ul>
-    <div class="pt-5">        
+    <div class="pt-5" x-data="data">        
         <form class="space-y-5" action="{{ route('visitors.storeMedicalAssessment') }}" method="POST">
             @csrf
             <div class="panel">
@@ -39,9 +39,9 @@ $date = Carbon::now()->format('d/m/Y');
                     <h5 class="font-semibold text-lg dark:text-white-light">Physical Examination</h5>
                 </div> 
                 <div class="grid grid-cols-1 gap-4 mb-4 md:grid-cols-3">                    
-                    <x-text-input name="height" value="{{ old('height') }}" :label="__('Height (in inches)')" :messages="$errors->get('height')" /> 
-                    <x-text-input name="weight" value="{{ old('weight') }}" :label="__('Weight (in kg)')" :messages="$errors->get('weight')" /> 
-                    <x-text-input name="bmi" value="{{ old('bmi') }}" :label="__('BMI')" :messages="$errors->get('bmi')" /> 
+                    <x-text-input name="height" value="{{ old('height') }}" x-model="height" :label="__('Height (in inches)')" :messages="$errors->get('height')" /> 
+                    <x-text-input name="weight" value="{{ old('weight') }}" @change="bmiCalculation()" x-model="weight" :label="__('Weight (in kg)')" :messages="$errors->get('weight')" /> 
+                    <x-text-input name="bmi" value="{{ old('bmi') }}" :label="__('BMI')" x-model="bmi" :messages="$errors->get('bmi')" /> 
                 </div>
                 <div class="grid grid-cols-1 gap-4 mb-4 md:grid-cols-3">                    
                     <x-text-input name="blood_pressure" value="{{ old('blood_pressure') }}" :label="__('Blood Pressure')" :messages="$errors->get('blood_pressure')" /> 
@@ -116,4 +116,19 @@ $date = Carbon::now()->format('d/m/Y');
         </form>         
     </div>
 </div>
+<script>
+document.addEventListener("alpine:init", () => {
+    Alpine.data('data', () => ({ 
+        height: '',
+        weight: '',
+        bmi: '',
+        bmiCalculation(){
+            if(!isNaN(this.height) && this.height != '' && !isNaN(this.weight) && this.weight != ''){
+                this.calcMeter = (this.height / 39.37).toFixed(2);
+                this.bmi = (this.weight/this.calcMeter).toFixed(2);
+            }
+        }
+    }));
+});
+</script> 
 </x-layout.default>
