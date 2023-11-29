@@ -32,10 +32,13 @@ Route::group(['namespace' => 'App\Http\Controllers'], function()
     });
 
     Route::resource('visitors', VisitorsController::class);
+    Route::resource('medical_assessment', MedicalAssessmentsController::class);
     Route::get('/add/visitors/', 'VisitorsController@add')->name('visitors.add');
     Route::post('addMedicalAssessment','VisitorsController@addMedicalAssessment')->name('addMedicalAssessment');
     Route::post('/visitors/storeMedicalAssessment','VisitorsController@storeMedicalAssessment')->name('visitors.storeMedicalAssessment');
-    Route::get('/hsitory/visitors/', 'VisitorsController@history')->name('visitors.history');
+    Route::get('/history/{visitor}/visitors/', 'VisitorsController@history')->name('visitors.history');
+    
+    // Route::post('/visitors/getVisitorData/{visitor}', 'VisitorsController@getVisitorData')->name('visitors.getVisitorData');
     
     Route::group(['middleware' => ['auth', 'permission']], function() {       
         /**

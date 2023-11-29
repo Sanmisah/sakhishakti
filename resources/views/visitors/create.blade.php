@@ -25,7 +25,7 @@
                 </div>
                 <div class="grid grid-cols-1 gap-4 mb-4 md:grid-cols-4">
                     <x-text-input name="dob" type="date" value="{{ old('dob') }}" id="dob" :label="__('Birth Date')" :messages="$errors->get('dob')" x-model="dob" x-on:change.debounce="ageCalculate()"/> 
-                    <x-text-input name="age" type="age" value="{{ old('age') }}" x-on:change.debounce="dobChange()" x-model="age" :label="__('Age')" :messages="$errors->get('age')"/>
+                    <x-text-input name="age" type="age" value="{{ old('age') }}" x-on:change.debounce="dobChange()" x-model="age" :label="__('Age')" :messages="$errors->get('age')" :require="true"/>
                     <div>
                         <label>Gender :</label>
                         <select class="form-input" name="gender">
@@ -58,8 +58,8 @@
                     <h5 class="font-semibold text-lg dark:text-white-light">Health Information</h5>
                 </div>               
                 <div class="grid grid-cols-1 gap-4 mb-4 md:grid-cols-4">
-                    <x-text-input name="height" value="{{ old('height') }}" :label="__('Height (in inches)')" :messages="$errors->get('height')" x-model="height"/> 
-                    <x-text-input name="weight" value="{{ old('weight') }}" :label="__('Weight (in kg)')" :messages="$errors->get('weight')" x-model="weight" @change="bmiCalculation()"/> 
+                    <x-text-input name="height" value="{{ old('height') }}" :label="__('Height (in inches)')" :messages="$errors->get('height')" x-model="height" :require="true"/> 
+                    <x-text-input name="weight" value="{{ old('weight') }}" :label="__('Weight (in kg)')" :messages="$errors->get('weight')" x-model="weight" @change="bmiCalculation()" :require="true"/> 
                     <x-text-input name="bmi" value="{{ old('bmi') }}" :label="__('BMI')" :messages="$errors->get('bmi')" x-model="bmi"/> 
                     <div>
                         <label>Blood Group :</label>

@@ -26,7 +26,7 @@
                 </div>
                 <div class="grid grid-cols-1 gap-4 mb-4 md:grid-cols-4">
                     <x-text-input name="dob" type="date" x-model="dob" value="{{ old('dob', $visitor->dob) }}" x-on:change.debounce="ageCalculate()" id="dob" :label="__('Birth Date')" :messages="$errors->get('dob')"/> 
-                    <x-text-input name="age" type="age" x-model="age" value="{{ old('age', $visitor->age) }}" :label="__('Age')" x-on:change.debounce="dobChange()" :messages="$errors->get('age')"/>
+                    <x-text-input name="age" type="age" x-model="age" value="{{ old('age', $visitor->age) }}" :label="__('Age')" x-on:change.debounce="dobChange()" :messages="$errors->get('age')" :require="true"/>
                     <div>
                         <label>Gender :</label>
                         <select class="form-input" name="gender">
@@ -59,8 +59,8 @@
                     <h5 class="font-semibold text-lg dark:text-white-light">Health Information</h5>
                 </div>               
                 <div class="grid grid-cols-1 gap-4 mb-4 md:grid-cols-4">
-                    <x-text-input name="height" value="{{ old('height', $visitor->height) }}" x-model="height" :label="__('Height (in inches)')" :messages="$errors->get('height')" /> 
-                    <x-text-input name="weight" value="{{ old('weight', $visitor->weight) }}" @change="bmiCalculation()" x-model="weight" :label="__('Weight (in kg)')" :messages="$errors->get('weight')" /> 
+                    <x-text-input name="height" value="{{ old('height', $visitor->height) }}" x-model="height" :label="__('Height (in inches)')" :messages="$errors->get('height')" :require="true"/> 
+                    <x-text-input name="weight" value="{{ old('weight', $visitor->weight) }}" @change="bmiCalculation()" x-model="weight" :label="__('Weight (in kg)')" :messages="$errors->get('weight')" :require="true"/> 
                     <x-text-input name="bmi" value="{{ old('bmi', $visitor->bmi) }}" x-model="bmi" :label="__('BMI')" :messages="$errors->get('bmi')" /> 
                     <div>
                         <label>Blood Group :</label>

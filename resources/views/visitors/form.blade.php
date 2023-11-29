@@ -39,8 +39,8 @@ $date = Carbon::now()->format('d/m/Y');
                     <h5 class="font-semibold text-lg dark:text-white-light">Physical Examination</h5>
                 </div> 
                 <div class="grid grid-cols-1 gap-4 mb-4 md:grid-cols-3">                    
-                    <x-text-input name="height" value="{{ old('height') }}" x-model="height" :label="__('Height (in inches)')" :messages="$errors->get('height')" /> 
-                    <x-text-input name="weight" value="{{ old('weight') }}" @change="bmiCalculation()" x-model="weight" :label="__('Weight (in kg)')" :messages="$errors->get('weight')" /> 
+                    <x-text-input name="height" value="{{ old('height') }}" x-model="height" :label="__('Height (in inches)')" :messages="$errors->get('height')" :require="true"/> 
+                    <x-text-input name="weight" value="{{ old('weight') }}" @change="bmiCalculation()" x-model="weight" :label="__('Weight (in kg)')" :messages="$errors->get('weight')" :require="true"/> 
                     <x-text-input name="bmi" value="{{ old('bmi') }}" :label="__('BMI')" x-model="bmi" :messages="$errors->get('bmi')" /> 
                 </div>
                 <div class="grid grid-cols-1 gap-4 mb-4 md:grid-cols-3">                    

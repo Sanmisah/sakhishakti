@@ -23,6 +23,9 @@ class VisitorRequest extends FormRequest
     {
         return [
             'full_name' => 'required',
+            'age' => 'required',
+            'height' => 'required',
+            'weight' => 'required',
         ];
     }
 

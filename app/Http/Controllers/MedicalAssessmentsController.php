@@ -14,20 +14,18 @@ class MedicalAssessmentsController extends Controller
 
     public function create()
     {
-        return view('medical_assessments.create');
+        //
     }
 
     public function store(Request $request) 
     {
-        $input = $request->all();      
-        $medical_assessment = MedicalAssessment::create($input);         
-        $request->session()->flash('success', 'Medical Assessment saved successfully!');
-        return redirect()->route('visitors.index'); 
+        //
     }
   
-    public function show(Visitor $visitor)
+    public function show(MedicalAssessment $medical_assessment)
     {
-       //
+        $medical_assessment = MedicalAssessment::where('id',$medical_assessment->id)->first();
+        return view('visitors.show_history', ['medical_assessment' => $medical_assessment]);
     }
 
     public function edit(Visitor $visitor)

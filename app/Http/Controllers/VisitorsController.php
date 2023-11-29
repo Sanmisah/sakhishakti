@@ -55,7 +55,7 @@ class VisitorsController extends Controller
   
     public function show(Visitor $visitor)
     {
-       //
+       //dd($visitor);
     }
 
     public function edit(Visitor $visitor)
@@ -110,9 +110,7 @@ class VisitorsController extends Controller
 
     public function addMedicalAssessment(Request $request)
     {      
-        
         $visitor_code = $request->visitor_code;
-        
         $visitors = Visitor::select('id','full_name')
                             ->where('visitor_code', $visitor_code)
                             ->first();
@@ -127,9 +125,24 @@ class VisitorsController extends Controller
     public function storeMedicalAssessment(Request $request) 
     {
         // dd($request);
+        $request->validate([
+            'height' => 'required',
+            'weight' => 'required',
+        ]);    
         $input = $request->all();      
         $visitor = MedicalAssessment::create($input); 
         $request->session()->flash('success', 'Medical Assessment saved successfully!');
         return redirect()->route('visitors.index'); 
+    }
+
+    public function history(Visitor $visitor)
+    {
+        $visitor->load(['MedicalAssessments']);
+        return view('visitors.history', ['visitor' => $visitor]);
+    }
+
+    public function getVisitorData(Visitor $visitor)
+    {
+        return view('visitors.show_history');
     }
 }
