@@ -1,10 +1,19 @@
-<x-layout.default>
+<?php if (isset($component)) { $__componentOriginal71c6471fa76ce19017edc287b6f4508c = $component; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.layout.default','data' => []] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? (array) $attributes->getIterator() : [])); ?>
+<?php $component->withName('layout.default'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag && $constructor = (new ReflectionClass(Illuminate\View\AnonymousComponent::class))->getConstructor()): ?>
+<?php $attributes = $attributes->except(collect($constructor->getParameters())->map->getName()->all()); ?>
+<?php endif; ?>
+<?php $component->withAttributes([]); ?>
 <script defer src="/assets/js/apexcharts.js"></script>
-    <x-slot name="header">
+     <?php $__env->slot('header', null, []); ?> 
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Dashboard') }}
+            <?php echo e(__('Dashboard')); ?>
+
         </h2>
-    </x-slot>
+     <?php $__env->endSlot(); ?>
     <div>
         <ul class="flex space-x-2 rtl:space-x-reverse">
             <li>
@@ -19,7 +28,8 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
-                    {{ __("You're logged in!") }}
+                    <?php echo e(__("You're logged in!")); ?>
+
                 </div>
             </div>
         </div>
@@ -31,7 +41,7 @@
                     <div class="ltr:mr-1 rtl:ml-1 text-md font-semibold">Today Visitors Register</div>
                 </div>
                 <div class="flex items-center mt-5">
-                    <div class="text-3xl font-bold ltr:mr-3 rtl:ml-3"> {{$no_of_reg_today}} </div>
+                    <div class="text-3xl font-bold ltr:mr-3 rtl:ml-3"> <?php echo e($no_of_reg_today); ?> </div>
                 </div>                
             </div>
 
@@ -40,7 +50,7 @@
                     <div class="ltr:mr-1 rtl:ml-1 text-md font-semibold">Visitors</div>
                 </div>
                 <div class="flex items-center mt-5">
-                    <div class="text-3xl font-bold ltr:mr-3 rtl:ml-3"> {{$no_of_reg}} </div>
+                    <div class="text-3xl font-bold ltr:mr-3 rtl:ml-3"> <?php echo e($no_of_reg); ?> </div>
                 </div>
             </div>
 
@@ -49,7 +59,7 @@
                     <div class="ltr:mr-1 rtl:ml-1 text-md font-semibold">BMI</div>
                 </div>
                 <div class="flex items-center mt-5">
-                    <div class="text-3xl font-bold ltr:mr-3 rtl:ml-3"> {{$no_of_bmi}} </div>
+                    <div class="text-3xl font-bold ltr:mr-3 rtl:ml-3"> <?php echo e($no_of_bmi); ?> </div>
                 </div>
             </div>
 
@@ -76,4 +86,10 @@
             </div>
         </div>
     </div>
-</x-layout.default>
+ <?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginal71c6471fa76ce19017edc287b6f4508c)): ?>
+<?php $component = $__componentOriginal71c6471fa76ce19017edc287b6f4508c; ?>
+<?php unset($__componentOriginal71c6471fa76ce19017edc287b6f4508c); ?>
+<?php endif; ?>
+<?php /**PATH C:\Users\HP\Project\sakhi-shakti\resources\views//dashboard.blade.php ENDPATH**/ ?>

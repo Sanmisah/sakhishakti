@@ -3,6 +3,7 @@ use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\VisitorsController;
+use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -37,13 +38,9 @@ Route::group(['namespace' => 'App\Http\Controllers'], function()
     Route::post('addMedicalAssessment','VisitorsController@addMedicalAssessment')->name('addMedicalAssessment');
     Route::post('/visitors/storeMedicalAssessment','VisitorsController@storeMedicalAssessment')->name('visitors.storeMedicalAssessment');
     Route::get('/history/{visitor}/visitors/', 'VisitorsController@history')->name('visitors.history');
+    Route::resource('dashboard', DashboardController::class);
     
-    // Route::post('/visitors/getVisitorData/{visitor}', 'VisitorsController@getVisitorData')->name('visitors.getVisitorData');
-    
-    Route::group(['middleware' => ['auth', 'permission']], function() {       
-        /**
-         * User Routes
-         */
+    Route::group(['middleware' => ['auth', 'permission']], function() {      
         Route::group(['prefix' => 'users'], function() {
             Route::get('/', 'UsersController@index')->name('users.index');
             Route::get('/create', 'UsersController@create')->name('users.create');
@@ -53,18 +50,14 @@ Route::group(['namespace' => 'App\Http\Controllers'], function()
             Route::patch('/{user}/update', 'UsersController@update')->name('users.update');
             Route::delete('/{user}/destroy', 'UsersController@destroy')->name('users.destroy');
         });
-        Route::get('profile', 'ProfileController@index')->name('profile.change');        
-        /**
-         * Masters Route
-         */
+        Route::get('profile', 'ProfileController@index')->name('profile.change');
     });
 
     Route::group(['middleware' => ['auth']], function() {  
         Route::get('profile', 'ProfileController@index')->name('profile.change');       
         Route::post('profile', 'ProfileController@changePassword')->name('profile.change');       
         Route::get('profile/edit/{user}', 'ProfileController@edit')->name('profile.edit');       
-        Route::post('profile/{user}/update', 'ProfileController@update')->name('profile.update');       
-      
+        Route::post('profile/{user}/update', 'ProfileController@update')->name('profile.update');
     });
 });
 
