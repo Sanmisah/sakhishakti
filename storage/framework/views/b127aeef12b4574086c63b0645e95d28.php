@@ -1,10 +1,19 @@
-<x-layout.default>
+<?php if (isset($component)) { $__componentOriginal9d5893b966d42bc9a39e2bb81c9df0c6 = $component; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.layout.default','data' => []] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? (array) $attributes->getIterator() : [])); ?>
+<?php $component->withName('layout.default'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag && $constructor = (new ReflectionClass(Illuminate\View\AnonymousComponent::class))->getConstructor()): ?>
+<?php $attributes = $attributes->except(collect($constructor->getParameters())->map->getName()->all()); ?>
+<?php endif; ?>
+<?php $component->withAttributes([]); ?>
 <script defer src="/assets/js/apexcharts.js"></script>
-    <x-slot name="header">
+     <?php $__env->slot('header', null, []); ?> 
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Dashboard') }}
+            <?php echo e(__('Dashboard')); ?>
+
         </h2>
-    </x-slot>
+     <?php $__env->endSlot(); ?>
     <div class="pt-5">
         <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6 mb-6 text-white">
             <div class="panel bg-gradient-to-r from-violet-500 to-violet-400">
@@ -12,7 +21,7 @@
                     <div class="ltr:mr-1 rtl:ml-1 text-md font-semibold">Total Visitors</div>
                 </div>
                 <div class="flex items-center mt-5">
-                    <div class="text-3xl font-bold ltr:mr-3 rtl:ml-3"> {{$no_of_reg}} </div>
+                    <div class="text-3xl font-bold ltr:mr-3 rtl:ml-3"> <?php echo e($no_of_reg); ?> </div>
                 </div>
             </div>
             <div class="panel bg-gradient-to-r from-cyan-500 to-cyan-400">
@@ -20,7 +29,7 @@
                     <div class="ltr:mr-1 rtl:ml-1 text-md font-semibold">Today Visitors Register</div>
                 </div>
                 <div class="flex items-center mt-5">
-                    <div class="text-3xl font-bold ltr:mr-3 rtl:ml-3"> {{$no_of_reg_today}} </div>
+                    <div class="text-3xl font-bold ltr:mr-3 rtl:ml-3"> <?php echo e($no_of_reg_today); ?> </div>
                 </div>                
             </div>
 
@@ -31,7 +40,7 @@
                     <div class="ltr:mr-1 rtl:ml-1 text-md font-semibold">BMI</div>
                 </div>
                 <div class="flex items-center mt-5">
-                    <div class="text-3xl font-bold ltr:mr-3 rtl:ml-3"> {{$no_of_bmi}} </div>
+                    <div class="text-3xl font-bold ltr:mr-3 rtl:ml-3"> <?php echo e($no_of_bmi); ?> </div>
                 </div>
             </div>
            
@@ -110,9 +119,9 @@
                         series: [{
                                 name: 'Counts',
                                 data: [
-                                @foreach($villages as $visit)
-                                '{{ $visit->total }}',
-                                @endforeach
+                                <?php $__currentLoopData = $villages; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $visit): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                '<?php echo e($visit->total); ?>',
+                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                 ]
                             },
                            
@@ -164,9 +173,9 @@
                         },
                         xaxis: {
                             categories: [
-                                @foreach($villages as $visit)
-                                '{{ $visit->village }}',
-                                @endforeach
+                                <?php $__currentLoopData = $villages; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $visit): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                '<?php echo e($visit->village); ?>',
+                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                             ],
                             axisBorder: {
                                 show: true,
@@ -209,9 +218,9 @@
                  get distributionByGenderOptions() {
                     return {
                         series: [
-                            @foreach($genders as $visit)
-                            {{ $visit->total }},
-                            @endforeach
+                            <?php $__currentLoopData = $genders; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $visit): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                            <?php echo e($visit->total); ?>,
+                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                         ],
                         chart: {
                             type: 'donut',
@@ -279,9 +288,9 @@
                             },
                         },
                         labels: [ 
-                            @foreach($genders as $visit)
-                            '{{ $visit->gender }}',
-                            @endforeach
+                            <?php $__currentLoopData = $genders; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $visit): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                            '<?php echo e($visit->gender); ?>',
+                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                         ],
                         states: {
                             hover: {
@@ -305,5 +314,11 @@
             }));
         });
     </script>
-</x-layout.default>
+ <?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginal9d5893b966d42bc9a39e2bb81c9df0c6)): ?>
+<?php $component = $__componentOriginal9d5893b966d42bc9a39e2bb81c9df0c6; ?>
+<?php unset($__componentOriginal9d5893b966d42bc9a39e2bb81c9df0c6); ?>
+<?php endif; ?>
 
+<?php /**PATH /home/sanmisha/@Projects/sakhishakti/resources/views//dashboard.blade.php ENDPATH**/ ?>
