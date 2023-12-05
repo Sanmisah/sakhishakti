@@ -1,3 +1,6 @@
+<?php
+use Carbon\Carbon;
+?>
 <?php if (isset($component)) { $__componentOriginal71c6471fa76ce19017edc287b6f4508c = $component; } ?>
 <?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.layout.default','data' => []] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? (array) $attributes->getIterator() : [])); ?>
 <?php $component->withName('layout.default'); ?>
@@ -62,14 +65,14 @@
                 </div>
                 <div class="grid grid-cols-1 gap-4 mb-4 md:grid-cols-4">
                     <?php if (isset($component)) { $__componentOriginal71c6471fa76ce19017edc287b6f4508c = $component; } ?>
-<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.text-input','data' => ['name' => 'dob','type' => 'date','xModel' => 'dob','value' => ''.e(old('dob', $visitor->dob)).'','xOn:change.debounce' => 'ageCalculate()','id' => 'dob','label' => __('Birth Date'),'messages' => $errors->get('dob')]] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? (array) $attributes->getIterator() : [])); ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.text-input','data' => ['name' => 'dob','type' => 'date','xModel' => 'dob','value' => ''.e(old('dob')).'','xOn:change.debounce' => 'ageCalculate()','id' => 'dob','label' => __('Birth Date'),'messages' => $errors->get('dob')]] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? (array) $attributes->getIterator() : [])); ?>
 <?php $component->withName('text-input'); ?>
 <?php if ($component->shouldRender()): ?>
 <?php $__env->startComponent($component->resolveView(), $component->data()); ?>
 <?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag && $constructor = (new ReflectionClass(Illuminate\View\AnonymousComponent::class))->getConstructor()): ?>
 <?php $attributes = $attributes->except(collect($constructor->getParameters())->map->getName()->all()); ?>
 <?php endif; ?>
-<?php $component->withAttributes(['name' => 'dob','type' => 'date','x-model' => 'dob','value' => ''.e(old('dob', $visitor->dob)).'','x-on:change.debounce' => 'ageCalculate()','id' => 'dob','label' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute(__('Birth Date')),'messages' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($errors->get('dob'))]); ?>
+<?php $component->withAttributes(['name' => 'dob','type' => 'date','x-model' => 'dob','value' => ''.e(old('dob')).'','x-on:change.debounce' => 'ageCalculate()','id' => 'dob','label' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute(__('Birth Date')),'messages' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($errors->get('dob'))]); ?>
 <?php echo $__env->renderComponent(); ?>
 <?php endif; ?>
 <?php if (isset($__componentOriginal71c6471fa76ce19017edc287b6f4508c)): ?>
@@ -77,14 +80,14 @@
 <?php unset($__componentOriginal71c6471fa76ce19017edc287b6f4508c); ?>
 <?php endif; ?> 
                     <?php if (isset($component)) { $__componentOriginal71c6471fa76ce19017edc287b6f4508c = $component; } ?>
-<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.text-input','data' => ['name' => 'age','type' => 'age','xModel' => 'age','value' => ''.e(old('age', $visitor->age)).'','label' => __('Age'),'xOn:change.debounce' => 'dobChange()','messages' => $errors->get('age')]] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? (array) $attributes->getIterator() : [])); ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.text-input','data' => ['name' => 'age','type' => 'age','xModel' => 'age','value' => ''.e(old('age', $visitor->age)).'','label' => __('Age'),'xOn:change.debounce' => 'dobChange()','messages' => $errors->get('age'),'require' => true]] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? (array) $attributes->getIterator() : [])); ?>
 <?php $component->withName('text-input'); ?>
 <?php if ($component->shouldRender()): ?>
 <?php $__env->startComponent($component->resolveView(), $component->data()); ?>
 <?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag && $constructor = (new ReflectionClass(Illuminate\View\AnonymousComponent::class))->getConstructor()): ?>
 <?php $attributes = $attributes->except(collect($constructor->getParameters())->map->getName()->all()); ?>
 <?php endif; ?>
-<?php $component->withAttributes(['name' => 'age','type' => 'age','x-model' => 'age','value' => ''.e(old('age', $visitor->age)).'','label' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute(__('Age')),'x-on:change.debounce' => 'dobChange()','messages' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($errors->get('age'))]); ?>
+<?php $component->withAttributes(['name' => 'age','type' => 'age','x-model' => 'age','value' => ''.e(old('age', $visitor->age)).'','label' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute(__('Age')),'x-on:change.debounce' => 'dobChange()','messages' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($errors->get('age')),'require' => true]); ?>
 <?php echo $__env->renderComponent(); ?>
 <?php endif; ?>
 <?php if (isset($__componentOriginal71c6471fa76ce19017edc287b6f4508c)): ?>
@@ -236,14 +239,14 @@
                 </div>               
                 <div class="grid grid-cols-1 gap-4 mb-4 md:grid-cols-4">
                     <?php if (isset($component)) { $__componentOriginal71c6471fa76ce19017edc287b6f4508c = $component; } ?>
-<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.text-input','data' => ['name' => 'height','value' => ''.e(old('height', $visitor->height)).'','xModel' => 'height','label' => __('Height (in inches)'),'messages' => $errors->get('height')]] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? (array) $attributes->getIterator() : [])); ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.text-input','data' => ['name' => 'height','value' => ''.e(old('height', $visitor->height)).'','xModel' => 'height','label' => __('Height (in inches)'),'messages' => $errors->get('height'),'require' => true]] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? (array) $attributes->getIterator() : [])); ?>
 <?php $component->withName('text-input'); ?>
 <?php if ($component->shouldRender()): ?>
 <?php $__env->startComponent($component->resolveView(), $component->data()); ?>
 <?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag && $constructor = (new ReflectionClass(Illuminate\View\AnonymousComponent::class))->getConstructor()): ?>
 <?php $attributes = $attributes->except(collect($constructor->getParameters())->map->getName()->all()); ?>
 <?php endif; ?>
-<?php $component->withAttributes(['name' => 'height','value' => ''.e(old('height', $visitor->height)).'','x-model' => 'height','label' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute(__('Height (in inches)')),'messages' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($errors->get('height'))]); ?>
+<?php $component->withAttributes(['name' => 'height','value' => ''.e(old('height', $visitor->height)).'','x-model' => 'height','label' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute(__('Height (in inches)')),'messages' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($errors->get('height')),'require' => true]); ?>
 <?php echo $__env->renderComponent(); ?>
 <?php endif; ?>
 <?php if (isset($__componentOriginal71c6471fa76ce19017edc287b6f4508c)): ?>
@@ -251,14 +254,14 @@
 <?php unset($__componentOriginal71c6471fa76ce19017edc287b6f4508c); ?>
 <?php endif; ?> 
                     <?php if (isset($component)) { $__componentOriginal71c6471fa76ce19017edc287b6f4508c = $component; } ?>
-<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.text-input','data' => ['name' => 'weight','value' => ''.e(old('weight', $visitor->weight)).'','@change' => 'bmiCalculation()','xModel' => 'weight','label' => __('Weight (in kg)'),'messages' => $errors->get('weight')]] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? (array) $attributes->getIterator() : [])); ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.text-input','data' => ['name' => 'weight','value' => ''.e(old('weight', $visitor->weight)).'','@change' => 'bmiCalculation()','xModel' => 'weight','label' => __('Weight (in kg)'),'messages' => $errors->get('weight'),'require' => true]] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? (array) $attributes->getIterator() : [])); ?>
 <?php $component->withName('text-input'); ?>
 <?php if ($component->shouldRender()): ?>
 <?php $__env->startComponent($component->resolveView(), $component->data()); ?>
 <?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag && $constructor = (new ReflectionClass(Illuminate\View\AnonymousComponent::class))->getConstructor()): ?>
 <?php $attributes = $attributes->except(collect($constructor->getParameters())->map->getName()->all()); ?>
 <?php endif; ?>
-<?php $component->withAttributes(['name' => 'weight','value' => ''.e(old('weight', $visitor->weight)).'','@change' => 'bmiCalculation()','x-model' => 'weight','label' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute(__('Weight (in kg)')),'messages' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($errors->get('weight'))]); ?>
+<?php $component->withAttributes(['name' => 'weight','value' => ''.e(old('weight', $visitor->weight)).'','@change' => 'bmiCalculation()','x-model' => 'weight','label' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute(__('Weight (in kg)')),'messages' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($errors->get('weight')),'require' => true]); ?>
 <?php echo $__env->renderComponent(); ?>
 <?php endif; ?>
 <?php if (isset($__componentOriginal71c6471fa76ce19017edc287b6f4508c)): ?>
@@ -672,38 +675,67 @@
                         <label>Child's ID proof:</label>
                         <input type="file" name="child_doc" class="form-input">            
                         <br />
-                        <a href='/media/<?php echo e($visitor->getFirstMediaPath("child_doc")); ?>' class="btn btn-info badge bg-info" target="_blank">Child's ID proof</a>  
-                      
+                        <?php if($visitor->getFirstMediaUrl('child_doc')): ?>
+                            <a href="<?php echo e($visitor->getFirstMediaUrl('child_doc')); ?>" target="_blank" class="font-medium text-blue-600 dark:text-blue-500 hover:underline"><?php echo e(basename($visitor->getFirstMediaUrl('child_doc'))); ?></a>
+                        <?php endif; ?>
                     </div>
                     <div>
                         <label>Parents ID proof:</label>
-                        <input type="file" name="parent_doc" class="form-input">            
+                        <input type="file" name="parent_doc" class="form-input"> 
+                        <br />
+                        <?php if($visitor->getFirstMediaUrl('parent_doc')): ?>
+                            <a href="<?php echo e($visitor->getFirstMediaUrl('parent_doc')); ?>" target="_blank" class="font-medium text-blue-600 dark:text-blue-500 hover:underline"><?php echo e(basename($visitor->getFirstMediaUrl('parent_doc'))); ?></a>
+                        <?php endif; ?>
                     </div>
                     <div>
                         <label>Home address proof:</label>
-                        <input type="file" name="home_address_doc" class="form-input">            
+                        <input type="file" name="home_address_doc" class="form-input">           
+                        <br />
+                        <?php if($visitor->getFirstMediaUrl('home_address_doc')): ?>
+                            <a href="<?php echo e($visitor->getFirstMediaUrl('home_address_doc')); ?>" target="_blank" class="font-medium text-blue-600 dark:text-blue-500 hover:underline"><?php echo e(basename($visitor->getFirstMediaUrl('home_address_doc'))); ?></a>
+                        <?php endif; ?> 
                     </div>
                     <div>
                         <label>School ID card:</label>
-                        <input type="file" name="school_doc" class="form-input">            
+                        <input type="file" name="school_doc" class="form-input">
+                        <br />
+                        <?php if($visitor->getFirstMediaUrl('school_doc')): ?>
+                            <a href="<?php echo e($visitor->getFirstMediaUrl('school_doc')); ?>" target="_blank" class="font-medium text-blue-600 dark:text-blue-500 hover:underline"><?php echo e(basename($visitor->getFirstMediaUrl('school_doc'))); ?></a>
+                        <?php endif; ?>            
                     </div>
                 </div>
                 <div class="grid grid-cols-1 gap-4 mb-4 md:grid-cols-4">
                     <div>
                         <label>Any other health card/report:</label>
-                        <input type="file" name="health_card_doc" class="form-input">            
+                        <input type="file" name="health_card_doc" class="form-input">      
+                        <br />
+                        <?php if($visitor->getFirstMediaUrl('health_card_doc')): ?>
+                            <a href="<?php echo e($visitor->getFirstMediaUrl('health_card_doc')); ?>" target="_blank" class="font-medium text-blue-600 dark:text-blue-500 hover:underline"><?php echo e(basename($visitor->getFirstMediaUrl('health_card_doc'))); ?></a>
+                        <?php endif; ?>      
                     </div>
                     <div>
                         <label>Photo of signed consent form:</label>
-                        <input type="file" name="consent_doc" class="form-input">            
+                        <input type="file" name="consent_doc" class="form-input">      
+                        <br />
+                        <?php if($visitor->getFirstMediaUrl('consent_doc')): ?>
+                            <a href="<?php echo e($visitor->getFirstMediaUrl('consent_doc')); ?>" target="_blank" class="font-medium text-blue-600 dark:text-blue-500 hover:underline"><?php echo e(basename($visitor->getFirstMediaUrl('consent_doc'))); ?></a>
+                        <?php endif; ?>      
                     </div>
                     <div>
                         <label>Any other documents:</label>
-                        <input type="file" name="other_doc_1" class="form-input">            
+                        <input type="file" name="other_doc_1" class="form-input">  
+                        <br />
+                        <?php if($visitor->getFirstMediaUrl('other_doc_1')): ?>
+                            <a href="<?php echo e($visitor->getFirstMediaUrl('other_doc_1')); ?>" target="_blank" class="font-medium text-blue-600 dark:text-blue-500 hover:underline"><?php echo e(basename($visitor->getFirstMediaUrl('other_doc_1'))); ?></a>
+                        <?php endif; ?>          
                     </div>
                     <div>
                         <label>Any other documents:</label>
-                        <input type="file" name="other_doc_2" class="form-input">            
+                        <input type="file" name="other_doc_2" class="form-input">
+                        <br />
+                        <?php if($visitor->getFirstMediaUrl('other_doc_2')): ?>
+                            <a href="<?php echo e($visitor->getFirstMediaUrl('other_doc_2')); ?>" target="_blank" class="font-medium text-blue-600 dark:text-blue-500 hover:underline"><?php echo e(basename($visitor->getFirstMediaUrl('other_doc_2'))); ?></a>
+                        <?php endif; ?>            
                     </div>
                 </div> 
             </div>
@@ -751,10 +783,37 @@
 <script>
 document.addEventListener("alpine:init", () => {
     Alpine.data('data', () => ({  
+        age: '',
+        dob: '',
+        height: '',
+        weight: '',
+        bmi: '',
         init() {
+            this.age = '',
+            this.dob = '',
+            this.height = '',
+            this.weight = '',
+            this.bmi = '',
+            
             flatpickr(document.getElementById('dob'), {
                 dateFormat: 'd/m/Y',
-            });           
+            });    
+            <?php if($visitor->height): ?>                
+                this.height = <?php echo e($visitor->height); ?>;
+            <?php endif; ?>
+            <?php if($visitor->weight): ?>                
+                this.weight = <?php echo e($visitor->weight); ?>;
+            <?php endif; ?>       
+            <?php if($visitor->bmi): ?>                
+                this.bmi = <?php echo e($visitor->bmi); ?>;
+            <?php endif; ?>
+            <?php if($visitor->age): ?>                
+                this.age = <?php echo e($visitor->age); ?>;
+            <?php endif; ?>
+            // <?php if($visitor->dob): ?>                
+            //     this.dob = <?php echo e(Carbon::parse($visitor->dob)->format('d/m/Y')); ?>;
+            // <?php endif; ?>
+            // console.log(<?php echo e($visitor->dob); ?>)
         },     
         
         age: '',

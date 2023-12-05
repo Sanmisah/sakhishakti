@@ -1,3 +1,6 @@
+<?php
+use Carbon\Carbon;
+?>
 <x-layout.default>
 <div>
     <ul class="flex space-x-2 rtl:space-x-reverse">
@@ -25,7 +28,7 @@
                     </div>
                 </div>
                 <div class="grid grid-cols-1 gap-4 mb-4 md:grid-cols-4">
-                    <x-text-input name="dob" type="date" x-model="dob" value="{{ old('dob', $visitor->dob) }}" x-on:change.debounce="ageCalculate()" id="dob" :label="__('Birth Date')" :messages="$errors->get('dob')"/> 
+                    <x-text-input name="dob" type="date" x-model="dob" value="{{ old('dob') }}" x-on:change.debounce="ageCalculate()" id="dob" :label="__('Birth Date')" :messages="$errors->get('dob')"/> 
                     <x-text-input name="age" type="age" x-model="age" value="{{ old('age', $visitor->age) }}" :label="__('Age')" x-on:change.debounce="dobChange()" :messages="$errors->get('age')" :require="true"/>
                     <div>
                         <label>Gender :</label>
@@ -174,38 +177,67 @@
                         <label>Child's ID proof:</label>
                         <input type="file" name="child_doc" class="form-input">            
                         <br />
-                        <a href='/media/{{ $visitor->getFirstMediaPath("child_doc")}}' class="btn btn-info badge bg-info" target="_blank">Child's ID proof</a>  
-                      
+                        @if($visitor->getFirstMediaUrl('child_doc'))
+                            <a href="{{ $visitor->getFirstMediaUrl('child_doc')}}" target="_blank" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">{{basename($visitor->getFirstMediaUrl('child_doc'))}}</a>
+                        @endif
                     </div>
                     <div>
                         <label>Parents ID proof:</label>
-                        <input type="file" name="parent_doc" class="form-input">            
+                        <input type="file" name="parent_doc" class="form-input"> 
+                        <br />
+                        @if($visitor->getFirstMediaUrl('parent_doc'))
+                            <a href="{{ $visitor->getFirstMediaUrl('parent_doc')}}" target="_blank" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">{{basename($visitor->getFirstMediaUrl('parent_doc'))}}</a>
+                        @endif
                     </div>
                     <div>
                         <label>Home address proof:</label>
-                        <input type="file" name="home_address_doc" class="form-input">            
+                        <input type="file" name="home_address_doc" class="form-input">           
+                        <br />
+                        @if($visitor->getFirstMediaUrl('home_address_doc'))
+                            <a href="{{ $visitor->getFirstMediaUrl('home_address_doc')}}" target="_blank" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">{{basename($visitor->getFirstMediaUrl('home_address_doc'))}}</a>
+                        @endif 
                     </div>
                     <div>
                         <label>School ID card:</label>
-                        <input type="file" name="school_doc" class="form-input">            
+                        <input type="file" name="school_doc" class="form-input">
+                        <br />
+                        @if($visitor->getFirstMediaUrl('school_doc'))
+                            <a href="{{ $visitor->getFirstMediaUrl('school_doc')}}" target="_blank" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">{{basename($visitor->getFirstMediaUrl('school_doc'))}}</a>
+                        @endif            
                     </div>
                 </div>
                 <div class="grid grid-cols-1 gap-4 mb-4 md:grid-cols-4">
                     <div>
                         <label>Any other health card/report:</label>
-                        <input type="file" name="health_card_doc" class="form-input">            
+                        <input type="file" name="health_card_doc" class="form-input">      
+                        <br />
+                        @if($visitor->getFirstMediaUrl('health_card_doc'))
+                            <a href="{{ $visitor->getFirstMediaUrl('health_card_doc')}}" target="_blank" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">{{basename($visitor->getFirstMediaUrl('health_card_doc'))}}</a>
+                        @endif      
                     </div>
                     <div>
                         <label>Photo of signed consent form:</label>
-                        <input type="file" name="consent_doc" class="form-input">            
+                        <input type="file" name="consent_doc" class="form-input">      
+                        <br />
+                        @if($visitor->getFirstMediaUrl('consent_doc'))
+                            <a href="{{ $visitor->getFirstMediaUrl('consent_doc')}}" target="_blank" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">{{basename($visitor->getFirstMediaUrl('consent_doc'))}}</a>
+                        @endif      
                     </div>
                     <div>
                         <label>Any other documents:</label>
-                        <input type="file" name="other_doc_1" class="form-input">            
+                        <input type="file" name="other_doc_1" class="form-input">  
+                        <br />
+                        @if($visitor->getFirstMediaUrl('other_doc_1'))
+                            <a href="{{ $visitor->getFirstMediaUrl('other_doc_1')}}" target="_blank" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">{{basename($visitor->getFirstMediaUrl('other_doc_1'))}}</a>
+                        @endif          
                     </div>
                     <div>
                         <label>Any other documents:</label>
-                        <input type="file" name="other_doc_2" class="form-input">            
+                        <input type="file" name="other_doc_2" class="form-input">
+                        <br />
+                        @if($visitor->getFirstMediaUrl('other_doc_2'))
+                            <a href="{{ $visitor->getFirstMediaUrl('other_doc_2')}}" target="_blank" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">{{basename($visitor->getFirstMediaUrl('other_doc_2'))}}</a>
+                        @endif            
                     </div>
                 </div> 
             </div>
@@ -225,10 +257,37 @@
 <script>
 document.addEventListener("alpine:init", () => {
     Alpine.data('data', () => ({  
+        age: '',
+        dob: '',
+        height: '',
+        weight: '',
+        bmi: '',
         init() {
+            this.age = '',
+            this.dob = '',
+            this.height = '',
+            this.weight = '',
+            this.bmi = '',
+            
             flatpickr(document.getElementById('dob'), {
                 dateFormat: 'd/m/Y',
-            });           
+            });    
+            @if($visitor->height)                
+                this.height = {{  $visitor->height }};
+            @endif
+            @if($visitor->weight)                
+                this.weight = {{  $visitor->weight }};
+            @endif       
+            @if($visitor->bmi)                
+                this.bmi = {{  $visitor->bmi }};
+            @endif
+            @if($visitor->age)                
+                this.age = {{  $visitor->age }};
+            @endif
+            // @if($visitor->dob)                
+            //     this.dob = {{ Carbon::parse($visitor->dob)->format('d/m/Y') }};
+            // @endif
+            // console.log({{$visitor->dob}})
         },     
         
         age: '',
